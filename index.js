@@ -17,7 +17,7 @@ Toolkit.run(
         const commits = (await tools.github.pulls.listCommits(params)).data;
         
         // Check for invalid commit messages
-        const containInvalidCommitMessage = false;
+        var containInvalidCommitMessage = false;
 
         const regex = new RegExp(commitMessageRegex)
         commits.forEach(commit => {
