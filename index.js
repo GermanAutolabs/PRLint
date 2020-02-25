@@ -33,5 +33,6 @@ Toolkit.run(
         } else {
             tools.exit.success();
         }
-    }
+    },
+    { event: ['pull_request.opened', 'pull_request.edited', 'pull_request.synchronize'], secrets: ['GITHUB_TOKEN'] }
 )
