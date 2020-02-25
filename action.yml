@@ -1,0 +1,9 @@
+name: 'PR Lint'
+description: 'Validate if the PR comply to the rules!!!'
+inputs:
+  commitMessageRegex:
+    description: 'Regex to validate commit messages'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'
