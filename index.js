@@ -5,13 +5,13 @@ const { Toolkit } = require('actions-toolkit');
 Toolkit.run(
     async tools => {
         const repository = tools.context.payload.repository;
-        const pull_request = tools.context.payload.pull_request.info;
+        const number = tools.context.payload.number;
         const commitMessageRegex = core.getInput('commitMessageRegex');
 
         const params = {
             owner: repository.owner.login,
             repo: repository.name,
-            pull_number: pull_request.number
+            pull_number: number
         }
 
         const commits = (await tools.github.pulls.listCommits(params)).data;
