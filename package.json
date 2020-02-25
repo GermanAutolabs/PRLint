@@ -19,6 +19,7 @@
   "homepage": "https://github.com/GermanAutolabs/PRLint#readme",
   "dependencies": {
     "@actions/core": "^1.2.2",
-    "@actions/github": "^2.1.1"
+    "@actions/github": "^2.1.1",
+    "actions-toolkit": "^3.0.1"
   }
 }
