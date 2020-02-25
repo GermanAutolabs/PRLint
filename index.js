@@ -7,7 +7,8 @@ Toolkit.run(
         const repository = tools.context.payload.repository;
         const number = tools.context.payload.number;
         const commitMessageRegex = core.getInput('commitMessageRegex');
-
+        tools.log('Using regex: ' + commitMessageRegex);
+        
         const params = {
             owner: repository.owner.login,
             repo: repository.name,
