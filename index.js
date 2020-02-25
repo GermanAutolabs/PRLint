@@ -34,5 +34,5 @@ Toolkit.run(
             tools.exit.success();
         }
     },
-    { event: ['pull_request.opened', 'pull_request.edited', 'pull_request.synchronize'], secrets: ['444681a696b9b83c90ffc43dfb0835feb5e3968e'] }
+    { event: ['pull_request.opened', 'pull_request.edited', 'pull_request.synchronize'], secrets: ['ACTION_TOKEN'] }
 )
