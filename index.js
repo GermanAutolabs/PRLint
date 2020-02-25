@@ -1,12 +1,36 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
+const { Toolkit } = require('actions-toolkit');
 
-try {
 
-    const commitMessageRegex = core.getInput('commitMessageRegex');
+Toolkit.run(
+    async tools => {
+        const { repository, pullRequest } = tools.context.payload;
+        const commitMessageRegex = core.getInput('commitMessageRegex');
 
-    console.log('Hello ${commitMessageRegex}');
+        const params = {
+            owner: repository.owner.login,
+            repo: repository.name,
+            pull_number: pullRequest.number
+        }
 
-} catch (error) {
-    core.setFailed(error.message);
-}
+        const commits = (await tools.github.pulls.listCommits(params)).data;
+        
+        // Check for invalid commit messages
+        const containInvalidCommitMessage = false;
+
+        const regex = new RegExp(commitMessageRegex)
+        commits.forEach(commit => {
+            const message = commit.commit.message;
+            if(!message.match(regex)) {
+                containInvalidCommitMessage = true;
+                tools.log('Invalid commit: ' + message);
+            }
+        });
+
+        if (containInvalidCommitMessage) {
+            tools.exit.failure("Invalid commits");
+        } else {
+            tools.exit.success();
+        }
+    }
+)
